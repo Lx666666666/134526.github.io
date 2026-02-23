@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> <!-- 改为中文更合适 -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录页面</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      /* 新增：让内边距不影响宽高计算 */
+    }
+
+    body {
+      background-image: url("./003.png");
+      background-size: cover;
+      /* 图片覆盖整个区域 */
+      background-repeat: no-repeat;
+      /* 不重复 */
+      background-position: center center;
+      /* 居中显示 */
+      /* 新增：页面背景色，提升视觉对比 */
+    }
+
+    .container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      /* 新增：标题和表单之间的间距 */
+    }
+
+    .header h1 {
+      color: #333;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .form {
+      width: 400px;
+      height: 450px;
+      background-color: rgb(254, 233, 242);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      padding: 10px;
+      /* 新增：避免内部元素溢出 */
+    }
+
+    /* 简化嵌套，合并冗余的waibu/neibu */
+    .form-content {
+      width: 100%;
+      height: 90%;
+      background-color: rgb(252, 248, 249);
+      display: flex;
+      flex-direction: column;
+      /* 改为纵向布局，适配输入框排列 */
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .shuru {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      /* 新增：输入框之间的间距 */
+    }
+
+    .shuru label {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    .shuru input {
+      width: 100%;
+      height: 45px;
+      padding: 0 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      /* 输入框圆角 */
+      font-size: 16px;
+      outline: none;
+      /* 去掉默认聚焦边框 */
+    }
+
+    /* 聚焦时输入框样式优化 */
+    .shuru input:focus {
+      border-color: #05e2db;
+      box-shadow: 0 0 5px rgba(5, 226, 219, 0.3);
+    }
+
+    .shuru small {
+      color: #666;
+      font-size: 14px;
+      text-align: right;
+      /* 忘记密码右对齐 */
+      cursor: pointer;
+      /* 鼠标悬浮变手型 */
+    }
+
+    .btn {
+      width: 100%;
+      height: 48px;
+      background-color: rgb(247, 189, 209);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.2s ease;
+      /* 点击动画 */
+    }
+
+    .btn:hover {
+      background-color: rgb(226, 72, 111);
+      transform: translateY(-2px);
+      /* 轻微上浮 */
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      /* 按下回弹 */
+    }
+
+    .bt {
+      position: absolute;
+      width: 150px;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: rgb(252, 248, 249);
+      border: 2px solid rgb(221, 103, 136);
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>登录页面</h1>
+    </div>
+    <form id="dorm" class="form">
+      <!-- 简化嵌套，删除冗余的waibu/neibu -->
+      <div class="form-content">
+        <div class="shuru">
+          <label for="username">请输入用户名和密码：</label>
+          <!-- 修复ID重复问题，分别命名 -->
+          <input type="text" placeholder="username" id="username">
+          <!-- 密码输入框改为type="password" -->
+          <input type="password" placeholder="password" id="password">
+          <small>忘记密码？</small>
+        </div>
+      </div>
+      <button type="submit" class="btn">登录</button>
+    </form>
+    <button class="bt" onclick="window.open('zhuye.html')">返回主页</button>
+  </div>
+  <script>
+    // 修复获取元素的ID，对应修改后的输入框ID
+    const form = document.getElementById('dorm');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // 阻止表单默认提交
+
+      // 去除首尾空格，避免空字符干扰验证
+      const usernameVal = username.value.trim();
+      const passwordVal = password.value.trim();
+
+      // 验证逻辑
+      if (usernameVal === '爱你胜子哥' && passwordVal === '12121') {
+        alert('登录成功！');
+      } else {
+        alert('用户名或密码错误！');
+      }
+    });
+  </script>
+</body>
+
+</html>
